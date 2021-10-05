@@ -4,8 +4,8 @@ import seedu.duke.constants.Messages;
 import seedu.duke.ui.Ui;
 
 /**
- *  A food record simply records the name and colorie count of a food item
- *  [FOOD_NAME] [CALORIES]
+ * A food record simply records the name and colorie count of a food item
+ * [FOOD_NAME] [CALORIES]
  *
  * @author  ngnigel99
  */

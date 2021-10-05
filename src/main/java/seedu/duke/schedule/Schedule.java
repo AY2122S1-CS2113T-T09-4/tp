@@ -1,6 +1,5 @@
 package seedu.duke.schedule;
 
-import seedu.duke.ui.schedule.UiSchedule;
 import java.time.DayOfWeek;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -33,9 +32,8 @@ public class Schedule {
         }
 
         // Print out the entire display in week rows
-        int totalWeeks = (int) Math.ceil(calendar.size() / 7);
+        int totalWeeks = (int) Math.ceil((double)calendar.size() / 7);
         int currentWeek = 0;
-        UiSchedule.printCalenderTitle(inputYearMonth);
         AtomicInteger j = new AtomicInteger();
         while (currentWeek < totalWeeks) {
             // Print day number from calendar (maybe a number string like "01" or " ") and space

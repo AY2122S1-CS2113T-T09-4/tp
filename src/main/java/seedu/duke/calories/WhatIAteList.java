@@ -21,7 +21,7 @@ public class WhatIAteList extends ListOfRecords<foodRecord> {
 
     /**
      * Adds a food Record to a list, then notifies the user of what  item
-     *  they  have entered
+     * they  have entered.
      *
      * @author  ngnigel99
      * @param recordToAdd record to add to list
