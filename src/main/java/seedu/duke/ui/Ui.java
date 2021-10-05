@@ -61,6 +61,7 @@ public class Ui {
 
     /**
      * Prints the name of the record, as well as the calorie count.
+     *
      * @param record Record of food names and calorie count.
      */
     public static void printAddRecord(foodRecord record)  {
@@ -101,4 +102,17 @@ public class Ui {
         System.out.println(INVALID_YEARMONTH);
     }
     //End Schedule
+
+    //UI for journal
+    public static void printIntroMessage()
+    {
+        System.out.println("Hello, I am Journal Bud.");
+        System.out.println("How may I help you?");
+    }
+
+    public static void printAddedNoteMessage(String noteName)
+    {
+        System.out.println("Great you have added the note: " + noteName);
+    }
+    //end of UI for journal
 }

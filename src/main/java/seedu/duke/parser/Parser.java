@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.commands.AddNoteCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.DisplayCalendarCommand;
 import seedu.duke.commands.ExitCommand;
@@ -96,6 +97,8 @@ public class Parser {
             return new ExitCommand();
         case COMMAND_CALENDAR:
             return new DisplayCalendarCommand(userInput);
+        case "add":
+            return new AddNoteCommand(userInput);
         default:
             throw new ClickException();
         }
@@ -109,6 +112,13 @@ public class Parser {
         int month = Integer.parseInt(arguments[0]);
         int year = Integer.parseInt(arguments[1]);
         return arguments;
+
+    //@author SvethaMahadevan
+    public static String parseAddNoteCommand(String input) {
+        String noteNameDetails = input.trim().split("add")[1];
+        String noteName = noteNameDetails.split("n/")[1].trim();
+        return noteName;
+
     }
 }
 

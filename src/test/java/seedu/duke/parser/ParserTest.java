@@ -28,11 +28,15 @@ class ParserTest {
     }
 
     //@author swatim
-    //Schedule
     @Test
     void formatYearMonth() {
         assertEquals(YearMonth.of(2021, 10), parser.parseCalendarCommand("calendar 10-2021"));
     }
-    //Schedule end
+
+    //@author SvethaMahadevan
+    @Test
+    void sampleTest() {
+        assertEquals("testnotename", parser.parseAddNoteCommand("add n/ testnotename"));
+    }
 
 }
