@@ -1,5 +1,8 @@
 package seedu.duke.constants;
 
+
+import static seedu.duke.constants.CommandConstants.*;
+
 public class Messages {
 
     public static final String LOGO = "\t" + " ____        _\n"
@@ -47,4 +50,18 @@ public class Messages {
         "06", "07", "08", "09", "10", "11", "12", "13",
         "14", "15", "16", "17", "18", "19", "20", "21",
         "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
+
+    // Help Partition
+    public static final String HELP_COMMAND_EXIT = COMMAND_EXIT + ": Exit Duke";
+    public static final String HELP_COMMAND_CALENDAR = COMMAND_CALENDAR + ": Show Calendar";
+    public static final String HELP_COMMAND_ADD_NOTE = COMMAND_ADD_NOTE + ": Add a Note";
+    public static final String HELP_COMMAND_MODULE = COMMAND_MODULE_SHOW + ": show: Displays list of all modules\n <MODULE_CODE> Displays details of <MODULE_CODE>";
+    // End Help Partition
+
+    // Module Partition
+    public static final String CURRENT_MODULES = "Modules for the current semester:\n1. CS2113T\n2. CG2028\n3. GES1011\n4. CFG1002";
+    public static final String DETAIL_CS2113T = "Information regarding CS2113T";
+    public static final String DETAIL_CG2028 = "Information regarding CG2028";
+    public static final String DETAIL_GES1011 = "Information regarding GES1011";
+    public static final String DETAIL_CFG1002 = "Information regarding CFG1002";
 }
