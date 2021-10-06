@@ -1,5 +1,7 @@
 package seedu.duke.commands;
 
+import seedu.duke.calories.FoodRecord;
+import seedu.duke.parser.Parser;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
@@ -16,6 +18,7 @@ public class AddFoodCommand extends Command {
         //TODO read in user input, check correct data entry
 
         //TODO parse in foodRecord here
+        //FoodRecord = Parser.parseFoodRecord(userInput);
         // storage.whatIAteTodayList.add(someFoodRecord);
     }
 }

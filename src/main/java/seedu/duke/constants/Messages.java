@@ -26,12 +26,11 @@ public class Messages {
     public static final String MESSAGE_GOODBYE = LINE_PREFIX + "Bye. Hope to see you again soon!";
 
     // Food partition
-    public static final String ADD_RECORD_GREET = "Nice.  I've added ";
-    public static final String ADD_RECORD_TTL = "to the list,";
-    public static final String RECORD_ATTRIBUTE_DIVIDER = "*";
-    public static final String ADD_RECORD_CONNECTOR = " with ";
-    public static final String ADD_RECORD_FINAL = " calories!";
     public static final String PRINT_DONE_CLEAR_LIST = "Cleared food record list for today!";
+    public static final String PRINT_ADD_FOOD_SYNTAX = "Please enter the name of the food [TEXT]"
+                                                        + "followed by the calorie count [INT]";
+    public static final String NON_NULL_INPUT = "Please do not leave fields empty!";
+    public static final String RECORD_ATTRIBUTE_DIVIDER = " : ";
     //end of Food
 
     //@author swatim

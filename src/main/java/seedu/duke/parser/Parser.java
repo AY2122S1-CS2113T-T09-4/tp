@@ -1,8 +1,19 @@
 package seedu.duke.parser;
 
+
 import seedu.duke.commands.*;
+import seedu.duke.calories.FoodRecord;
+import seedu.duke.commands.AddFoodCommand;
+import seedu.duke.commands.AddNoteCommand;
+import seedu.duke.commands.ClearFoodCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.ListFoodCommand;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
+import seedu.duke.exceptions.IllegalFoodParameterException;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDateTime;
 import java.time.YearMonth;
@@ -10,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 
 import static seedu.duke.constants.CommandConstants.*;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
+
 //@@author nvbinh15
 
 public class Parser {
@@ -98,6 +110,12 @@ public class Parser {
             return new HelpCommand();
         case COMMAND_MODULE_SHOW:
             return new ModuleShow(userInput);
+        case COMMAND_FOOD_ADD:
+            return new AddFoodCommand();
+        case COMMAND_FOOD_CLEAR:
+            return new ClearFoodCommand();
+        case COMMAND_FOOD_LIST:
+            return new ListFoodCommand();
         default:
             throw new ClickException();
         }
@@ -111,15 +129,29 @@ public class Parser {
         return arguments;
     }
 
-    public static YearMonth parseCalendarCommandForJunit(String input) {
-        // takes substring excluding "calendar" from command
-        String extractMonthYear = input.substring(9);
-        var arguments = extractMonthYear.split("-");
-        int month = Integer.parseInt(arguments[0]);
-        int year = Integer.parseInt(arguments[1]);
-        YearMonth yearMonth = YearMonth.of(year, month);
-        return yearMonth;
+    /**
+     * Parses a string into a food item.
+     *
+     * @author ngnigel99
+     */
+    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException {
+        try {
+            String[] splitInput = input.trim().split(" ");
+            if (splitInput.length != 2) {
+                throw new IllegalFoodParameterException();
+            }
+            int calories = Integer.parseInt(splitInput[1]);
+            String name  = splitInput[0];
+            FoodRecord recordToAdd = new FoodRecord(name, calories);
+            return recordToAdd;
+        } catch (NumberFormatException e) {
+            Ui.printAddFoodSyntax();
+        } catch (NullPointerException e) {
+            Ui.printNonNullInput();
+        }
+        return null;
     }
+
 
     public static String parseModuleCode(String input){
         String extractModuleCode = input.substring(10);

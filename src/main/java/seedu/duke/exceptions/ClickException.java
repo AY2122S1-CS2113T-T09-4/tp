@@ -6,5 +6,6 @@ package seedu.duke.exceptions;
  * A base class that represents checked specific exceptions thrown by Click.
  */
 public class ClickException extends Exception {
+    public String message;  //author ngnigel99
 
 }

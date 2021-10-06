@@ -28,8 +28,8 @@ public class FoodRecord {
 
     @Override
     public String toString() {
-        return foodName + " "
-                + Messages.RECORD_ATTRIBUTE_DIVIDER  + " "
+        return foodName
+                + Messages.RECORD_ATTRIBUTE_DIVIDER
                 + calorieCount;
     }
 
