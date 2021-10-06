@@ -7,15 +7,10 @@ import seedu.duke.schedule.Schedule;
 import java.time.YearMonth;
 import java.util.Scanner;
 
-import static seedu.duke.constants.Messages.HORIZONTAL_LINE;
-import static seedu.duke.constants.Messages.LOGO;
-import static seedu.duke.constants.Messages.MESSAGE_GOODBYE;
-import static seedu.duke.constants.Messages.MESSAGE_GREETING;
-import static seedu.duke.constants.Messages.CALENDAR_HEADER_LINE;
-import static seedu.duke.constants.Messages.INVALID_YEARMONTH;
-import static seedu.duke.constants.Messages.INVALID_CALENDAR_INPUT;
+import static seedu.duke.constants.Messages.*;
 
-public class Ui {
+public class
+Ui {
 
     /**
      * Reads the text entered by the user.
@@ -132,6 +127,40 @@ public class Ui {
         YearMonth currentYearMonth = YearMonth.now();
         printCalenderTitle(currentYearMonth);
         Schedule.displayCalendar(currentYearMonth);
+    }
+
+    /**
+     * Prints all valid commands and their purpose
+     */
+    public static void printHelp(){
+        System.out.println(HELP_COMMAND_CALENDAR);
+        System.out.println(HELP_COMMAND_ADD_NOTE);
+        System.out.println(HELP_COMMAND_EXIT);
+        System.out.println(HELP_COMMAND_MODULE);
+    }
+
+    public static void printModule(String action){
+        switch (action){
+            case "show":
+                System.out.println(CURRENT_MODULES);
+                break;
+            case "CS2113T":
+                System.out.println(DETAIL_CS2113T);
+                break;
+            case "CG2028":
+                System.out.println(DETAIL_CG2028);
+                break;
+            case "GES1011":
+                System.out.println(DETAIL_GES1011);
+                break;
+            case "CFG1002":
+                System.out.println(DETAIL_CFG1002);
+                break;
+        }
+
+    }
+    public static void printInvalidModuleCodeMessage(){
+        System.out.println("The module code entered is invalid");
     }
     //End Schedule
 

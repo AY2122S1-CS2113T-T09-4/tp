@@ -1,9 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.DisplayCalendarCommand;
-import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.*;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 
@@ -11,10 +8,8 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
+import static seedu.duke.constants.CommandConstants.*;
 import static seedu.duke.constants.Messages.EMPTY_STRING;
-import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
-import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
-import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 //@@author nvbinh15
 
 public class Parser {
@@ -99,6 +94,10 @@ public class Parser {
             return new DisplayCalendarCommand(userInput);
         case COMMAND_ADD_NOTE:
             return new AddNoteCommand(userInput);
+        case COMMAND_HELP:
+            return new HelpCommand();
+        case COMMAND_MODULE_SHOW:
+            return new ModuleShow(userInput);
         default:
             throw new ClickException();
         }
@@ -120,6 +119,11 @@ public class Parser {
         int year = Integer.parseInt(arguments[1]);
         YearMonth yearMonth = YearMonth.of(year, month);
         return yearMonth;
+    }
+
+    public static String parseModuleCode(String input){
+        String extractModuleCode = input.substring(10);
+        return extractModuleCode;
     }
 
 }
