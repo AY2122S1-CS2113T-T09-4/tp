@@ -10,6 +10,9 @@ import java.util.stream.IntStream;
 import static seedu.duke.constants.Messages.NUMBER_OF_DAYS_IN_WEEK;
 import static seedu.duke.constants.Messages.LEAVE_EMPTY_IN_DISPLAY;
 import static seedu.duke.constants.Messages.DAYS_IN_MONTH;
+import static seedu.duke.constants.Messages.FIRST_INDEX;
+import static seedu.duke.constants.Messages.DECOR_BEFORE;
+import static seedu.duke.constants.Messages.DECOR_AFTER;
 
 //@author swatim
 public class Schedule {
@@ -22,7 +25,7 @@ public class Schedule {
         // Add in spaces at the beginning for display upto day 1
         DayOfWeek dayOneOfMonth = inputYearMonth.atDay(1).getDayOfWeek();
         if (dayOneOfMonth != DayOfWeek.SUNDAY) {
-            for (int i = 0; i < dayOneOfMonth.getValue(); i++) {
+            for (int i = FIRST_INDEX; i < dayOneOfMonth.getValue(); i++) {
                 calendar.add(0, LEAVE_EMPTY_IN_DISPLAY);
             }
         }
@@ -37,8 +40,8 @@ public class Schedule {
         AtomicInteger j = new AtomicInteger();
         while (currentWeek < totalWeeks) {
             // Print day number from calendar (maybe a number string like "01" or " ") and space
-            IntStream.range(0, NUMBER_OF_DAYS_IN_WEEK).mapToObj(dayOfMonth -> "|  "
-                    + calendar.get(j.getAndIncrement()) + "  |").forEachOrdered(System.out::print);
+            IntStream.range(0, NUMBER_OF_DAYS_IN_WEEK).mapToObj(dayOfMonth -> DECOR_BEFORE
+                    + calendar.get(j.getAndIncrement()) + DECOR_AFTER).forEachOrdered(System.out::print);
             System.out.println();
             currentWeek++;
         }

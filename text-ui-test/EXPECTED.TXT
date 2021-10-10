@@ -1,3 +1,11 @@
+Hey, I didn't find directory fooddata/
+adding fooddata/ into repository...
+Hey, I didn't find list.txt in fooddata/!
+creating new file...
+Hey, I didn't find directory tasksdata/
+adding tasksdata/ into repository...
+Hey, I didn't find scheduleTasks.txt in tasksdata/!
+creating new file...
 	__________________________________________________
 	 ____        _
 	|  _ \ _   _| | _____
@@ -16,3 +24,13 @@ ________________________________________________________
 |  17  ||  18  ||  19  ||  20  ||  21  ||  22  ||  23  |
 |  24  ||  25  ||  26  ||  27  ||  28  ||  29  ||  30  |
 |  31  ||      ||      ||      ||      ||      ||      |
+Wow, that's a lot of food! Finished reading today's list
+You consumed 0 calories in total today!
+	__________________________________________________
+Nice.  I've added McSandwich to the list, with 3000 calories!
+	__________________________________________________
+Nice.  I've added McBurger to the list, with 6000 calories!
+	__________________________________________________
+	__________________________________________________
+	Bye. Hope to see you again soon!
+	__________________________________________________

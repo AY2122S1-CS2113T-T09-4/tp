@@ -27,13 +27,15 @@ public class Messages {
 
     // Food partition
     public static final String PRINT_DONE_CLEAR_LIST = "Cleared food record list for today!";
-    public static final String PRINT_ADD_FOOD_SYNTAX = "Please enter the name of the food [TEXT]"
+    public static final String PRINT_ADD_FOOD_SYNTAX = "Please enter the name of the food [TEXT] "
                                                         + "followed by the calorie count [INT]";
     public static final String NON_NULL_INPUT = "Please do not leave fields empty!";
     public static final String RECORD_ATTRIBUTE_DIVIDER = " : ";
+    public static final String LIST_PROPER_FEATURE  =  "Please list a proper feature tagged with ";
     //end of Food
 
     //@author swatim
+    //SCHEDULE BEGIN
     public static String CALENDAR_HEADER_LINE = "________________________________________________________";
     public static final String INVALID_CALENDAR_INPUT = " Invalid Input! Please "
             + "type command in format:   | calendar MM-YYYY |";
@@ -63,4 +65,15 @@ public class Messages {
     public static final String DETAIL_CG2028 = "Information regarding CG2028";
     public static final String DETAIL_GES1011 = "Information regarding GES1011";
     public static final String DETAIL_CFG1002 = "Information regarding CFG1002";
+    public static final String STORAGE_FILEPATH_SCHEDULE = "scheduleTasks.txt";
+    public static final String TODO = "todo";
+    public static final int INDEX_TODO_DESCRIPTION = 1;
+    public static final int INDEX_TODO_DATE = 2;
+    public static final int FIRST_INDEX = 0;
+    public static final String ADDED_TASK = "Task has been added successfully!";
+    public static final String LIST_TASKS_HEADER = "Here's your task list: ";
+    public static final String DATE_FORMAT_TODO = "dd-MM-yyyy";
+    public static final String DECOR_BEFORE = "|  ";
+    public static final String DECOR_AFTER = "  |";
+    //SCHEDULE END
 }

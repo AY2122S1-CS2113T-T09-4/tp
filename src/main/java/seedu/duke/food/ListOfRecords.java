@@ -1,4 +1,4 @@
-package seedu.duke.calories;
+package seedu.duke.food;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,10 @@ import java.util.ArrayList;
  */
 public abstract class ListOfRecords<T> {
     protected ArrayList<T> list =  new  ArrayList<>();
+
+    protected ArrayList<T> getList() {
+        return list;
+    }
 
     /**
      * Adds items to a list.

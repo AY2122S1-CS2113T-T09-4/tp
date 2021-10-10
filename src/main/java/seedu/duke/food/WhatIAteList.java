@@ -1,7 +1,8 @@
-package seedu.duke.calories;
+package seedu.duke.food;
 
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -17,6 +18,14 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
 
     public WhatIAteList(Date dayOfRecordList) {
         this.dayOfRecordList = dayOfRecordList;
+    }
+
+    //if date not given
+    public WhatIAteList() {
+    }
+
+    public ArrayList<FoodRecord> getList() {
+        return list;
     }
 
     /**
@@ -41,16 +50,16 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
     public void printIndexWithSuffix(int index) {
         String[] suffixList = {"st", "nd", "rd", "th"};
         String suffixToPrint;
-        if ((index - 2) / 10 == 0) {
-            suffixToPrint =  suffixList[1];
-        } else if ((index - 3) / 10 == 0) {
-            suffixToPrint = suffixList[2];
-        } else if ((index - 4) /  10 == 0) {
-            suffixToPrint = suffixList[3];
-        } else {
+        if ((index - 1) %  10 == 0) {
             suffixToPrint = suffixList[0];
+        } else if ((index - 2) % 10 == 0) {
+            suffixToPrint = suffixList[1];
+        } else if ((index - 3) % 10 == 0) {
+            suffixToPrint = suffixList[2];
+        } else {
+            suffixToPrint = suffixList[3];
         }
-        System.out.println(index + suffixToPrint);
+        System.out.print(index + suffixToPrint  +  ",");
     }
 
     /**
@@ -62,14 +71,17 @@ public class WhatIAteList extends ListOfRecords<FoodRecord> {
     @Override
     public void printList() {
         int index = 1;  //TODO integrate this with storage so it's not a magic number
+        int calorieSum =  0;
         for (FoodRecord listRecord : list) {
             printIndexWithSuffix(index);
             System.out.println("You consumed  " + listRecord.getFoodName()
                                 + " , which has a calorie count of : "
                                 + listRecord.getCalorieCount() + "!");
             index++;
+            calorieSum += listRecord.getCalorieCount();
         }
         System.out.println("Wow, that's a lot of food! Finished reading today's list");
+        System.out.println("You consumed " + calorieSum +  " calories in total today!");
     }
 
     @Override

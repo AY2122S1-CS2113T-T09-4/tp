@@ -1,7 +1,6 @@
 package seedu.duke.food;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.calories.FoodRecord;
 
 import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.IllegalFoodParameterException;

@@ -1,10 +1,12 @@
 package seedu.duke.ui;
 
-import seedu.duke.calories.FoodRecord;
+import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.schedule.Schedule;
+import seedu.duke.task.Task;
 
 import java.time.YearMonth;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static seedu.duke.constants.Messages.*;
@@ -17,7 +19,7 @@ public class Ui {
      * @param in The Scanner to read user input.
      * @return line Full line entered by the user.
      */
-    public static String getUserInput(Scanner in) {
+    public String getUserInput(Scanner in) {
         String line = in.nextLine();
         return line;
     }
@@ -65,7 +67,7 @@ public class Ui {
     public static void printAddRecord(FoodRecord record)  {
         System.out.println("Nice.  I've added "
                 + record.getFoodName()
-                + "to the list, with "
+                + " to the list, with "
                 + record.getCalorieCount()
                 + " calories!");
     }
@@ -86,6 +88,7 @@ public class Ui {
     public static void printNonNullInput() {
         System.out.println(Messages.NON_NULL_INPUT);
     }
+
     //end of FOOD
 
     //UI for journal
@@ -175,6 +178,31 @@ public class Ui {
         System.out.println("The module code entered is invalid");
     }
 
+
+    /**
+     * Prints confirmatory message after task is added successfully.
+     */
+    public static void printTaskAddedMessage() {
+        System.out.println(ADDED_TASK);
+    }
+
+    /**
+     * Prints out tasks list.
+     *
+     * @param tasks List of tasks to be displayed.
+     */
+    public static void printTaskList(ArrayList<Task> tasks) {
+        System.out.println(LIST_TASKS_HEADER);
+        if (!tasks.isEmpty()) {
+            int i = 1;
+            for (Task item : tasks) {
+                System.out.println((i++) + ". " + item);
+            }
+        } else {
+            System.out.println("NO TASKS!");
+        }
+    }
+  
     //End Schedule
 
 }
