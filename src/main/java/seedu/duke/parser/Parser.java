@@ -153,7 +153,7 @@ public class Parser {
     }
 
 
-    public static String parseModuleCode(String input){
+    public static String parseModuleCode(String input) {
         String extractModuleCode = input.substring(10);
         return extractModuleCode;
     }
