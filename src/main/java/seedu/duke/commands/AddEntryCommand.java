@@ -29,11 +29,6 @@ public class AddEntryCommand extends Command {
                 break;
             }
         }
-
-        System.out.println("The notes in the collection are");
-        collectionOfNotes.print();
-
-        System.out.println("The notes in the collection of " + notes.get(indexOfNote).getNoteName() + "are: ");
-        notes.get(indexOfNote).print();
+        ui.printAddedEntryMessage(argumentsNoteEntry[1]);
     }
 }

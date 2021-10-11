@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Note {
     protected String noteName;
-    private static final ArrayList<Entry> entriesList = new ArrayList<>();
+    private final ArrayList<Entry> entriesList = new ArrayList<>();
 
     public Note(String noteName) {
         this.noteName = noteName;
@@ -14,7 +14,11 @@ public class Note {
         return noteName;
     }
 
-    public static void addEntry(String title)  {
+    public ArrayList<Entry> getEntryArrayList() {
+        return entriesList;
+    }
+
+    public void addEntry(String title)  {
         entriesList.add(new Entry(title));
     }
 
@@ -22,9 +26,9 @@ public class Note {
         return "note" + "|" + noteName;
     }
 
-    public static void print() {
+    public void print() {
         for (int i = 0; i < entriesList.size(); i++) {
-            System.out.println(entriesList.get(i).getOfJournalEntry());
+            System.out.println(entriesList.get(i).getNameOfJournalEntry());
         }
     }
 }

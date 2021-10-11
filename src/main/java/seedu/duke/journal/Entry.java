@@ -7,8 +7,12 @@ public class Entry {
         this.titleOfJournalEntry = titleOfJournalEntry;
     }
 
-    public String getOfJournalEntry() {
+    public String getNameOfJournalEntry() {
         return titleOfJournalEntry;
+    }
+
+    public String toSaveFileFormat() {
+        return "entry" + "|" + titleOfJournalEntry;
     }
 
 }

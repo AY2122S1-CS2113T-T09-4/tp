@@ -1,17 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.AddEntryCommand;
-import seedu.duke.commands.AddFoodCommand;
-import seedu.duke.commands.AddModuleCommand;
-import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.AddTodoCommand;
-import seedu.duke.commands.ClearFoodCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.DisplayCalendarCommand;
-import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.ListFoodCommand;
-import seedu.duke.commands.ListTasksCommand;
-import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.*;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ClickException;
@@ -27,6 +16,7 @@ import java.util.List;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
@@ -175,6 +165,8 @@ public class Parser {
                 return new AddNoteCommand(userInput);
             case COMMAND_ADD_ENTRY:
                 return new AddEntryCommand(userInput);
+            case COMMAND_JOURNAL_LIST:
+                return new ListJournal();
             default:
                 throw new ClickException();
             }

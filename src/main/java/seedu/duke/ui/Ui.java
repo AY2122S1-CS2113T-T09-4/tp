@@ -117,6 +117,10 @@ public class Ui {
     public static void printAddedNoteMessage(String noteName) {
         System.out.println("Great you have added the note: " + noteName);
     }
+
+    public static void printAddedEntryMessage(String entryName) {
+        System.out.println("Great you have added the entry: " + entryName);
+    }
     //end of UI for journal
 
     //@author swatim
