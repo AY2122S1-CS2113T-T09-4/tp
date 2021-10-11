@@ -1,11 +1,26 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.*;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
+import seedu.duke.commands.AddEntryCommand;
+import seedu.duke.commands.AddFoodCommand;
+import seedu.duke.commands.AddModuleCommand;
+import seedu.duke.commands.AddNoteCommand;
+import seedu.duke.commands.AddTodoCommand;
+import seedu.duke.commands.ClearFoodCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.ListFoodCommand;
+import seedu.duke.commands.ListTasksCommand;
+import seedu.duke.commands.HelpCommand;
+import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.IllegalFoodParameterException;
+import seedu.duke.exceptions.WrongDividerOrderException;
+import seedu.duke.food.FoodRecord;
+import seedu.duke.constants.Messages;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDateTime;
@@ -37,6 +52,9 @@ public class Parser {
     static final String INPUT_DATE_TIME_FORMAT = "dd-MM-yyyy HHmm";
     static final String OUTPUT_DATE_TIME_FORMAT = "MMM dd yyyy HH:mm";
 
+    static final int FOOD_MINIMUM_PARAMETER = 4; // tags {/n /c} + 2 inputs {name, calorie}
+    static final String FOOD_NAME_DIVIDER = "n/";
+    static final String FOOD_CALORIE_DIVIDER = "c/";
 
     /**
      * Converts date and time in string format to a LocalDateTime object.
@@ -129,6 +147,7 @@ public class Parser {
      */
     public Command parseCommand(String userInput) throws ClickException {
         final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
+        assert commandTypeAndParams.length == 2;
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
 
@@ -185,25 +204,65 @@ public class Parser {
         return arguments;
     }
 
+    //@author ngnigel99
+    public static int getWordCount(String input) {
+        return input.trim().split(" ").length;
+    }
+
     /**
-     * Parses a string into a food item.
-     * current implementation: [NAME] [CALORIES].
+     * Returns a string representing a data block, separated by 2 dividers.
+     * For example, n/ [DATA_1] c/ [DATA_2], if n/ is passed, DATA_1 would be returned.
+     *
+     * @param input input that contains dividers and data
+     * @param dividerBefore divider before the data
+     * @param dividerAfter divider after the data
+     * @return data Array List of data extracted, containing both DATA_1 and DATA_2
+     *
      * @author ngnigel99
      */
-    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException {
+    public static String[] getData(String input,
+                                   String dividerBefore,
+                                   String dividerAfter)
+            throws WrongDividerOrderException, ArgumentsNotFoundException {
+        if (!(input.contains(dividerBefore) && input.contains(dividerAfter))) {
+            throw new ArgumentsNotFoundException();
+        }
+        if (input.indexOf(dividerBefore) >= input.indexOf(dividerAfter)) {
+            throw new WrongDividerOrderException();
+        }
+        assert input.indexOf(dividerBefore) < input.indexOf(dividerAfter) : "";
+        String afterFirstDivider  = input.split(dividerBefore)[1];
+        String dataFirst          = afterFirstDivider.split(dividerAfter)[0].trim();
+        String afterSecondDivider = afterFirstDivider.split(dividerAfter)[1];
+        String dataSecond         = afterSecondDivider.trim();
+
+        return  new String[] {dataFirst, dataSecond};
+
+    }
+
+    /**
+     * Parses a string into a food item.
+     * current implementation: {food add} n/ [NAME] c/ [CALORIES].
+     * @author ngnigel99
+     */
+    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
+            ArgumentsNotFoundException {
         try {
-            String[] splitInput = input.trim().split(" ");
-            if (splitInput.length != 2) {
+            if (getWordCount(input) < FOOD_MINIMUM_PARAMETER) {
                 throw new IllegalFoodParameterException();
             }
-            int calories = Integer.parseInt(splitInput[1]);
-            String name  = splitInput[0];
+            String[] data = getData(input, FOOD_NAME_DIVIDER, FOOD_CALORIE_DIVIDER);
+            String name = data[0];
+            int calories = Integer.parseInt(data[1]);
             FoodRecord recordToAdd = new FoodRecord(name, calories);
             return recordToAdd;
         } catch (NumberFormatException e) {
             Ui.printAddFoodSyntax();
         } catch (NullPointerException e) {
             Ui.printNonNullInput();
+        } catch (WrongDividerOrderException e) {
+            e.printStackTrace();
+            System.out.println("Oops, internal error");
         }
         return null;
     }

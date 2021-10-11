@@ -1,17 +1,29 @@
-# User Guide
+# Click - User Guide
 
-## Introduction
+## Table of Contents
 
-{Give a product intro}
+1. [Introduction](#1-introduction)
+1. [Quick Start](#2-quick-start)
+1. [Features](#3-features)
+1. [Command Summary](#4-command-summary)
+1. [Frequently Asked Questions](#5-frequently-asked-questions)
 
-## Quick Start
+## 1. Introduction
 
-{Give steps to get started quickly}
+Click (which stands for "command line interface for cramming & knowledge") is a desktop app for managing modules, lifestyle, schedule, and CAP planning, optimized for use via a Command Line Interface (CLI).
 
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+## 2. Quick Start
 
-## Features 
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest `click.jar` from [here]().
+3. Copy the file to the folder you want to use as the _home folder_ for Click.
+4. In the home folder for Click, launch the `jar` file using the `java -jar click.jar` command on Command Prompt (for Windows) or Terminal (for Unix-based OS, such as macOS and Linux) to start the app. If the setup is correct, you should see some think like this:
+
+```
+
+```
+
+## 3. Features 
 
 {Give detailed description of each feature}
 
@@ -29,14 +41,22 @@ Example of usage:
 
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
-## FAQ
-
-**Q**: How do I transfer my data to another computer? 
-
-**A**: {your answer here}
-
-## Command Summary
+## 4. Command Summary
 
 {Give a 'cheat sheet' of commands here}
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+
+## 5. Frequently Asked Questions
+
+Below are the answers to some of frequently askes questions about Click.
+
+**Q:** Can I use Click on different operating systems such as Windows and macOS?
+**A:** Yes. Click is compatible with Windows, macOS, and Linus as long as you have Java 11 or above installed in your machine.
+
+**Q:** What will happen to my data if Click crashed?
+A: Data is saved automatically to `STORAGEFILE` whenever you change your tasks. Therefore, your data will be safely saved even though Click is crashed.
+
+**Q:** Can I exit Click without using the bye command?
+**A:** Yes, you can. As mentioned above, your data will be saved automatically if a change of the tasks occurs, so you can exit Click worry-free.
+
+

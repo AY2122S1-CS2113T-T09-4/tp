@@ -4,8 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.logger.ClickLogger;
 import seedu.duke.task.TaskList;
 import seedu.duke.exceptions.ExceptionHandler;
 
@@ -19,6 +21,7 @@ public class Duke {
     private static Ui ui = new Ui();
     private static ExceptionHandler exceptionHandler = new ExceptionHandler();
     private static Storage storage;
+    private static Logger logger;
 
     static {
         try {
@@ -31,6 +34,9 @@ public class Duke {
     private static Parser parser = new Parser();
 
     private static void run() {
+        logger = ClickLogger.getNewLogger();
+        logger.info("running click");
+
         ui.printGreeting();
         Scanner in = new Scanner(System.in);
         while (true) {
