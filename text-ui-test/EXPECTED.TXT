@@ -1,5 +1,14 @@
-Nice.  I've added McSandwich to the list, with 3000 calories!
-Nice.  I've added McBurger to the list, with 6000 calories!
+Hey, I didn't find directory fooddata/
+adding fooddata/ into repository...
+Hey, I didn't find list.txt in fooddata/!
+creating new file...
+Hey, I didn't find directory tasksdata/
+adding tasksdata/ into repository...
+Hey, I didn't find scheduleTasks.txt in tasksdata/!
+creating new file...
+Hey, I didn't find directory journalData/
+adding journalData/ into repository...
+FNFE, creating file
 	__________________________________________________
 	 ____        _
 	|  _ \ _   _| | _____
@@ -27,9 +36,10 @@ ________________________________________________________
 |  24  ||  25  ||  26  ||  27  ||  28  ||  29  ||  30  |
 |  31  ||      ||      ||      ||      ||      ||      |
 	__________________________________________________
+Hey, I didn't find scheduleTasks.txt in tasksdata/!
+creating new file...
 Here's your task list: 
-1. REWORK input.txt (on: 11-10-2021)
-2. REWORK EXPECTED.TXT (on: 11-10-2021)
+NO TASKS!
 	__________________________________________________
 Task has been added successfully!
 	__________________________________________________
@@ -38,8 +48,6 @@ Task has been added successfully!
 Here's your task list: 
 1. REWORK input.txt (on: 11-10-2021)
 2. REWORK EXPECTED.TXT (on: 11-10-2021)
-3. REWORK input.txt (on: 11-10-2021)
-4. REWORK EXPECTED.TXT (on: 11-10-2021)
 	__________________________________________________
 Cleared food record list for today!
 	__________________________________________________
@@ -58,7 +66,6 @@ You consumed 9000 calories in total today!
 note added!
 	__________________________________________________
 The notes in the collection are
-test
 test
 The notes in the collection of testare: 
 rand
