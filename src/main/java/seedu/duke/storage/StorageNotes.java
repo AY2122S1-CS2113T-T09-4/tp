@@ -2,8 +2,6 @@ package seedu.duke.storage;
 
 import seedu.duke.journal.CollectionOfNotes;
 import seedu.duke.journal.Note;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,8 +20,8 @@ public class StorageNotes {
         int dataSize = data.size();
         while (i < dataSize) {
             String dataLine = data.get(i);
-            String[] todoArguments = dataLine.split("\\|");
-            notes.add(addNote(todoArguments));
+            String[] noteArguments = dataLine.split("\\|");
+            notes.add(addNote(noteArguments));
             i++;
         }
         return notes;
@@ -34,7 +32,7 @@ public class StorageNotes {
         return new Note(name);
     }
 
-    static ArrayList<String> notesToData(ArrayList<Note> notes) {
+    public static ArrayList<String> NotesToData(ArrayList<Note> notes) {
         ArrayList<String> data = new ArrayList<>();
         for (Note note : notes) {
             data.add(note.toSaveFileFormat());
@@ -44,7 +42,7 @@ public class StorageNotes {
 
     public static void writeCollectionOfNotes(CollectionOfNotes collectionOfNotes) throws IOException {
         ArrayList<Note> notes = collectionOfNotes.getNotesArrayList();
-        ArrayList<String> data = notesToData(notes);
+        ArrayList<String> data = NotesToData(notes);
         Storage.writeDataOntoSaveFile(filePath, data);
     }
 

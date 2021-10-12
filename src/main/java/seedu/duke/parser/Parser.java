@@ -1,22 +1,9 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.AddEntryCommand;
-import seedu.duke.commands.AddFoodCommand;
-import seedu.duke.commands.AddModuleCommand;
-import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.AddTodoCommand;
-import seedu.duke.commands.ClearFoodCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.DisplayCalendarCommand;
-import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.ListFoodCommand;
-import seedu.duke.commands.ListTasksCommand;
-import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.*;
+import seedu.duke.exceptions.*;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
-import seedu.duke.exceptions.ClickException;
-import seedu.duke.exceptions.IllegalDateTimeException;
-import seedu.duke.exceptions.IllegalFoodParameterException;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDateTime;
@@ -27,6 +14,7 @@ import java.util.List;
 
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
@@ -137,52 +125,55 @@ public class Parser {
      * @return The command to be executed.
      * @throws ClickException If there is an exception to type DukeException occurs.
      */
-    public Command parseCommand(String userInput) throws ClickException {
+    public Command parseCommand(String userInput) throws ClickException, EmptyJournalArgumentException, IncorrectJournalArgumentException {
         final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
-        assert commandTypeAndParams.length == 2;
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
 
         switch (commandType) {
-        case COMMAND_EXIT:
-            return new ExitCommand();
-        case COMMAND_CALENDAR:
-            String[] todoArguments = commandArgs.split(" ");
-            if (COMMAND_LIST_TASKS.equals(todoArguments[0])) {
-                return new ListTasksCommand();
-            } else if (COMMAND_TODO.equals(todoArguments[0])) {
-                ArrayList<String> arguments = parseTodoCommand(userInput);
-                return new AddTodoCommand(arguments);
-            } else {
-                return new DisplayCalendarCommand(userInput);
-            }
-        case COMMAND_FOOD:
-            String[] foodArgs = commandArgs.split(" ");
-            switch (foodArgs[0]) {
-            case COMMAND_SUFFIX_ADD:
-                String nameCalorieInput = userInput.split("food add")[1];
-                return new AddFoodCommand(nameCalorieInput);
-            case COMMAND_SUFFIX_CLEAR:
-                return new ClearFoodCommand();
-            case COMMAND_SUFFIX_LIST:
-                return new ListFoodCommand();
-            default:
-                throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
-            }
-        case COMMAND_NOTE:
-            String[] noteArguments = commandArgs.split(" ");
-            switch (noteArguments[0]) {
-            case COMMAND_ADD_NOTE:
-                return new AddNoteCommand(userInput);
-            case COMMAND_ADD_ENTRY:
-                return new AddEntryCommand(userInput);
+            case COMMAND_EXIT:
+                return new ExitCommand();
+            case COMMAND_CALENDAR:
+                String[] todoArguments = commandArgs.split(" ");
+                if (COMMAND_LIST_TASKS.equals(todoArguments[0])) {
+                    return new ListTasksCommand();
+                } else if (COMMAND_TODO.equals(todoArguments[0])) {
+                    ArrayList<String> arguments = parseTodoCommand(userInput);
+                    return new AddTodoCommand(arguments);
+                } else {
+                    return new DisplayCalendarCommand(userInput);
+                }
+            case COMMAND_FOOD:
+                String[] foodArgs = commandArgs.split(" ");
+                switch (foodArgs[0]) {
+                    case COMMAND_SUFFIX_ADD:
+                        String nameCalorieInput = userInput.split("food add")[1];
+                        return new AddFoodCommand(nameCalorieInput);
+                    case COMMAND_SUFFIX_CLEAR:
+                        return new ClearFoodCommand();
+                    case COMMAND_SUFFIX_LIST:
+                        return new ListFoodCommand();
+                    default:
+                        throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
+                }
+            case COMMAND_NOTE:
+                String[] noteArguments = commandArgs.split(" ");
+                switch (noteArguments[0]) {
+                    case COMMAND_ADD_NOTE:
+                        return new AddNoteCommand(userInput);
+                    case COMMAND_ADD_ENTRY:
+                        return new AddEntryCommand(userInput);
+                    case COMMAND_JOURNAL_LIST:
+                        return new ListJournalCommand();
+                    case "":
+                        throw new EmptyJournalArgumentException();
+                    default:
+                        throw new IncorrectJournalArgumentException();
+                }
+            case COMMAND_HElP:
+                return new HelpCommand(commandArgs);
             default:
                 throw new ClickException();
-            }
-        case COMMAND_HElP:
-            return new HelpCommand(commandArgs);
-        default:
-            throw new ClickException();
         }
     }
 
@@ -217,4 +208,3 @@ public class Parser {
         return null;
     }
 }
-

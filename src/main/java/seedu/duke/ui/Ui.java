@@ -108,14 +108,22 @@ public class Ui {
 
     //end of FOOD
 
-    //UI for journal
-    public static void printIntroMessage() {
-        System.out.println("Hello, I am Journal Bud.");
-        System.out.println("How may I help you?");
-    }
-
+    /**
+     * Prints message to indicate note has been added.
+     *
+     * @author SvethaMahadevan
+     */
     public static void printAddedNoteMessage(String noteName) {
         System.out.println("Great you have added the note: " + noteName);
+    }
+
+    /**
+     * Prints message to indicate entry has been added.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printAddedEntryMessage(String entryName) {
+        System.out.println("Great you have added the entry: " + entryName);
     }
     //end of UI for journal
 
@@ -183,20 +191,20 @@ public class Ui {
 
     public static void printHelpMessage(String helpMessage) {
         switch (helpMessage) {
-        case COMMAND_HELP_SUFFIX_MODULE:
-            System.out.println(HELP_MESSAGE_MODULE);
-            break;
-        case COMMAND_HELP_SUFFIX_CALENDAR:
-            System.out.println(HELP_MESSAGE_CALENDAR);
-            break;
-        case COMMAND_HELP_SUFFIX_FOOD:
-            System.out.println(HELP_MESSAGE_FOOD);
-            break;
-        case COMMAND_HELP_SUFFIX_EXIT:
-            System.out.println(HELP_MESSAGE_EXIT);
-            break;
-        default:
-            System.out.println(HELP_MESSAGE);
+            case COMMAND_HELP_SUFFIX_MODULE:
+                System.out.println(HELP_MESSAGE_MODULE);
+                break;
+            case COMMAND_HELP_SUFFIX_CALENDAR:
+                System.out.println(HELP_MESSAGE_CALENDAR);
+                break;
+            case COMMAND_HELP_SUFFIX_FOOD:
+                System.out.println(HELP_MESSAGE_FOOD);
+                break;
+            case COMMAND_HELP_SUFFIX_EXIT:
+                System.out.println(HELP_MESSAGE_EXIT);
+                break;
+            default:
+                System.out.println(HELP_MESSAGE);
         }
 
     }

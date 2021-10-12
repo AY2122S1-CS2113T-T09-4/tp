@@ -1,6 +1,7 @@
 package seedu.duke.storage;
 
 import seedu.duke.food.WhatIAteList;
+import seedu.duke.journal.CollectionOfEntries;
 import seedu.duke.journal.CollectionOfNotes;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
@@ -30,6 +31,7 @@ public class Storage {
     public WhatIAteList whatIAteTodayList =  StorageFood.load();
     public TaskList tasksList = StorageTasks.readTaskList();
     public CollectionOfNotes collectionOfNotes = StorageNotes.readCollectionOfNotes();
+    public CollectionOfEntries collectionOfEntries = StorageEntries.readEntries();
 
     public Storage() throws IOException {
     }
