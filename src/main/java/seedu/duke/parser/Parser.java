@@ -12,6 +12,7 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.ListFoodCommand;
 import seedu.duke.commands.ListTasksCommand;
 import seedu.duke.commands.HelpCommand;
+import seedu.duke.commands.DeleteTaskCommand;
 import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.exceptions.IllegalDateTimeException;
@@ -153,12 +154,16 @@ public class Parser {
             return new ExitCommand();
         case COMMAND_CALENDAR:
             String[] todoArguments = commandArgs.split(" ");
-            if (COMMAND_LIST_TASKS.equals(todoArguments[0])) {
+            switch (todoArguments[0]) {
+            case COMMAND_LIST_TASKS:
                 return new ListTasksCommand();
-            } else if (COMMAND_TODO.equals(todoArguments[0])) {
+            case COMMAND_TODO:
                 ArrayList<String> arguments = parseTodoCommand(userInput);
                 return new AddTodoCommand(arguments);
-            } else {
+            case "delete":
+                int indexOfTaskToBeDeleted = Integer.parseInt(todoArguments[1]);
+                return new DeleteTaskCommand(indexOfTaskToBeDeleted);
+            default:
                 return new DisplayCalendarCommand(userInput);
             }
         case COMMAND_FOOD:

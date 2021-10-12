@@ -1,14 +1,19 @@
-Hey, I didn't find directory fooddata/
-adding fooddata/ into repository...
-Hey, I didn't find list.txt in fooddata/!
-creating new file...
 Hey, I didn't find directory tasksdata/
 adding tasksdata/ into repository...
 Hey, I didn't find scheduleTasks.txt in tasksdata/!
 creating new file...
+Hey, I didn't find directory fooddata/
+adding fooddata/ into repository...
+Hey, I didn't find list.txt in fooddata/!
+creating new file...
 Hey, I didn't find directory journalData/
 adding journalData/ into repository...
-FNFE, creating file
+Hey, I didn't find journalNotes.txt in journalData/!
+creating new file...
+Hey, I didn't find list.txt in fooddata/!
+creating new file...
+Hey, I didn't find journalNotes.txt in journalData/!
+creating new file...
 	__________________________________________________
 	 ____        _
 	|  _ \ _   _| | _____
@@ -18,57 +23,6 @@ FNFE, creating file
 
 	Hello! I'm Duke
 	What can I do for you?
-	__________________________________________________
-                     OCTOBER 2021
-________________________________________________________
-|      ||      ||      ||      ||      ||  01  ||  02  |
-|  03  ||  04  ||  05  ||  06  ||  07  ||  08  ||  09  |
-|  10  ||  11  ||  12  ||  13  ||  14  ||  15  ||  16  |
-|  17  ||  18  ||  19  ||  20  ||  21  ||  22  ||  23  |
-|  24  ||  25  ||  26  ||  27  ||  28  ||  29  ||  30  |
-|  31  ||      ||      ||      ||      ||      ||      |
-                     OCTOBER 2021
-________________________________________________________
-|      ||      ||      ||      ||      ||  01  ||  02  |
-|  03  ||  04  ||  05  ||  06  ||  07  ||  08  ||  09  |
-|  10  ||  11  ||  12  ||  13  ||  14  ||  15  ||  16  |
-|  17  ||  18  ||  19  ||  20  ||  21  ||  22  ||  23  |
-|  24  ||  25  ||  26  ||  27  ||  28  ||  29  ||  30  |
-|  31  ||      ||      ||      ||      ||      ||      |
-	__________________________________________________
-Hey, I didn't find scheduleTasks.txt in tasksdata/!
-creating new file...
-Here's your task list: 
-NO TASKS!
-	__________________________________________________
-Task has been added successfully!
-	__________________________________________________
-Task has been added successfully!
-	__________________________________________________
-Here's your task list: 
-1. REWORK input.txt (on: 11-10-2021)
-2. REWORK EXPECTED.TXT (on: 11-10-2021)
-	__________________________________________________
-Cleared food record list for today!
-	__________________________________________________
-Wow, that's a lot of food! Finished reading today's list
-You consumed 0 calories in total today!
-	__________________________________________________
-Nice.  I've added McSandwich to the list, with 3000 calories!
-	__________________________________________________
-Nice.  I've added McBurger to the list, with 6000 calories!
-	__________________________________________________
-1st,You consumed  McSandwich , which has a calorie count of : 3000!
-2nd,You consumed  McBurger , which has a calorie count of : 6000!
-Wow, that's a lot of food! Finished reading today's list
-You consumed 9000 calories in total today!
-	__________________________________________________
-note added!
-	__________________________________________________
-The notes in the collection are
-test
-The notes in the collection of testare: 
-rand
 	__________________________________________________
 	__________________________________________________
 	Bye. Hope to see you again soon!

@@ -28,7 +28,16 @@ public class Storage {
     private String tasksFilePath;
 
     public WhatIAteList whatIAteTodayList =  StorageFood.load();
-    public TaskList tasksList = StorageTasks.readTaskList();
+    public static TaskList tasksList;
+
+    static {
+        try {
+            tasksList = StorageTasks.readTaskList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public CollectionOfNotes collectionOfNotes = StorageNotes.readCollectionOfNotes();
 
     public Storage() throws IOException {

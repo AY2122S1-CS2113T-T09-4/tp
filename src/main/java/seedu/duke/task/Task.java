@@ -10,6 +10,14 @@ public abstract class Task {
         this.date = date;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
     public abstract String toSaveFileFormat();
 
     public String toString() {
