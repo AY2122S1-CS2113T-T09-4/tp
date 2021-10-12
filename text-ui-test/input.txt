@@ -1,1 +1,13 @@
+calendar 10-2021
+calendar list
+calendar todo n/ REWORK input.txt d/ 11-10-2021
+calendar todo n/ REWORK EXPECTED.TXT d/ 11-10-2021
+calendar list
+food clear
+food list
+food add n/ McSandwich c/ 3000
+food add n/ McBurger c/ 6000
+food list
+note add n/ test
+note entryadd n/ test e/rand
 exit
