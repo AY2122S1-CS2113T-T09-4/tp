@@ -3,13 +3,13 @@ package seedu.duke.storage;
 import seedu.duke.food.WhatIAteList;
 import seedu.duke.journal.CollectionOfEntries;
 import seedu.duke.journal.CollectionOfNotes;
-import seedu.duke.task.Task;
+import seedu.duke.module.Module;
+import seedu.duke.module.ModuleList;
 import seedu.duke.task.TaskList;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,9 +29,20 @@ public class Storage {
     private String tasksFilePath;
 
     public WhatIAteList whatIAteTodayList =  StorageFood.load();
-    public TaskList tasksList = StorageTasks.readTaskList();
+    public static TaskList tasksList;
+
+    static {
+        try {
+            tasksList = StorageTasks.readTaskList();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public CollectionOfNotes collectionOfNotes = StorageNotes.readCollectionOfNotes();
     public CollectionOfEntries collectionOfEntries = StorageEntries.readEntries();
+    public StorageModule storageModule = new StorageModule();
+
 
     public Storage() throws IOException {
     }

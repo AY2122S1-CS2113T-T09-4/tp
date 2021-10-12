@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.ArgumentsNotFoundException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.exceptions.IllegalFoodParameterException;
 import seedu.duke.parser.Parser;
@@ -25,7 +26,12 @@ public class AddFoodCommand extends Command {
 
     @Override
     public void execute(Ui ui, Storage storage) throws IllegalFoodParameterException, IOException {
-        FoodRecord foodRecord  = Parser.parseFoodRecord(inputString);
+        FoodRecord foodRecord  = null;
+        try {
+            foodRecord = Parser.parseFoodRecord(inputString);
+        } catch (ArgumentsNotFoundException e) {
+            e.printStackTrace();    //dividers are not aligned with syntax
+        }
         storage.whatIAteTodayList.addToList(foodRecord);
         StorageFood.saveList(storage.whatIAteTodayList);
     }
