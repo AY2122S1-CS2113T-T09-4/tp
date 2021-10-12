@@ -22,8 +22,4 @@ public class TaskList {
         tasks.add(task);
     }
 
-    public void deleteTask(int index) {
-        tasks.remove(index - 1);
-    }
-
 }

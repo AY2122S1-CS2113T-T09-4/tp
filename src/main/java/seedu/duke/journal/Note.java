@@ -1,30 +1,27 @@
 package seedu.duke.journal;
 
-import java.util.ArrayList;
-
 public class Note {
     protected String noteName;
-    private static final ArrayList<Entry> entriesList = new ArrayList<>();
 
     public Note(String noteName) {
         this.noteName = noteName;
     }
 
+    /**
+     * Returns the name of the note.
+     * @return noteName which stores the name of the note.
+     */
     public String getNoteName() {
         return noteName;
     }
 
-    public static void addEntry(String title)  {
-        entriesList.add(new Entry(title));
-    }
-
+    /**
+     * Returns name of notebook in format to save in data file.
+     * @return  stringForStorage name of notebook in format to save in data file.
+     */
     public String toSaveFileFormat() {
-        return "note" + "|" + noteName;
+        String stringForStorage = "note" + "|" + noteName;
+        return stringForStorage;
     }
 
-    public static void print() {
-        for (int i = 0; i < entriesList.size(); i++) {
-            System.out.println(entriesList.get(i).getOfJournalEntry());
-        }
-    }
 }

@@ -42,7 +42,7 @@ public class StorageTasks {
         return new Todo(description, date);
     }
 
-    public static ArrayList<String> tasksToData(ArrayList<Task> tasks) {
+    static ArrayList<String> tasksToData(ArrayList<Task> tasks) {
         ArrayList<String> data = new ArrayList<>();
         for (Task task : tasks) {
             data.add(task.toSaveFileFormat());
@@ -50,6 +50,10 @@ public class StorageTasks {
         return data;
     }
 
+    //SCHEDULE BEGIN
+    //Write tasks data onto save file using writeDataOntoSaveFile() method
+    //ArrayList<Task> tasks--->ArrayList<String> data--->save file
+    //Can do the same for other save files by replacing the filepath constant
     public static void writeTaskList(TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getTaskList();
         ArrayList<String> data = StorageTasks.tasksToData(tasks);

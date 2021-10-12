@@ -1,13 +1,10 @@
 package seedu.duke.ui;
 
-import seedu.duke.commands.DisplayCalendarCommand;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.schedule.Schedule;
 import seedu.duke.task.Task;
-import seedu.duke.storage.Storage;
 
-import java.io.IOException;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,9 +14,6 @@ import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_HELP_SUFFIX_MODULE;
 import static seedu.duke.constants.Messages.ADDED_TASK;
-import static seedu.duke.constants.Messages.DISPLAY_LINE;
-import static seedu.duke.constants.Messages.DAY_DEMARCATION;
-import static seedu.duke.constants.Messages.NO_TASK_IN_DAY;
 import static seedu.duke.constants.Messages.CALENDAR_HEADER_LINE;
 import static seedu.duke.constants.Messages.HELP_MESSAGE;
 import static seedu.duke.constants.Messages.HELP_MESSAGE_CALENDAR;
@@ -35,18 +29,6 @@ import static seedu.duke.constants.Messages.MESSAGE_GOODBYE;
 import static seedu.duke.constants.Messages.MESSAGE_GREETING;
 
 public class Ui {
-
-    private static Storage storage;
-
-    static {
-        try {
-            storage = new Storage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static Ui ui = new Ui();
 
     /**
      * Reads the text entered by the user.
@@ -71,7 +53,7 @@ public class Ui {
      */
     public static void printGreeting() {
         printMessage(LOGO + MESSAGE_GREETING);
-        //printCurrentMonthCalendar();
+        printCurrentMonthCalendar();
     }
 
     /**
@@ -126,14 +108,22 @@ public class Ui {
 
     //end of FOOD
 
-    //UI for journal
-    public static void printIntroMessage() {
-        System.out.println("Hello, I am Journal Bud.");
-        System.out.println("How may I help you?");
-    }
-
+    /**
+     * Prints message to indicate note has been added.
+     *
+     * @author SvethaMahadevan
+     */
     public static void printAddedNoteMessage(String noteName) {
         System.out.println("Great you have added the note: " + noteName);
+    }
+
+    /**
+     * Prints message to indicate entry has been added.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printAddedEntryMessage(String entryName) {
+        System.out.println("Great you have added the entry: " + entryName);
     }
     //end of UI for journal
 
@@ -171,9 +161,8 @@ public class Ui {
      */
     public static void printCurrentMonthCalendar() {
         YearMonth currentYearMonth = YearMonth.now();
-        String month = String.valueOf(currentYearMonth.getMonthValue());
-        String year = String.valueOf(currentYearMonth.getYear());
-        new DisplayCalendarCommand("calendar " + month + "-" + year).execute(ui, storage);
+        printCalenderTitle(currentYearMonth);
+        Schedule.displayCalendar(currentYearMonth);
     }
 
     /**
@@ -200,19 +189,6 @@ public class Ui {
         }
     }
 
-    public static void printCalendarLine() {
-        System.out.println(DISPLAY_LINE);
-    }
-
-    public static void printDayDemarcation() {
-        System.out.print(DAY_DEMARCATION);
-    }
-
-    public static void printEmptyTaskSpot() {
-        System.out.print(NO_TASK_IN_DAY);
-    }
-    //End Schedule
-
     public static void printHelpMessage(String helpMessage) {
         switch (helpMessage) {
         case COMMAND_HELP_SUFFIX_MODULE:
@@ -232,5 +208,6 @@ public class Ui {
         }
 
     }
+    //End Schedule
 
 }

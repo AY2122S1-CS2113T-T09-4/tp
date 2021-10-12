@@ -48,18 +48,16 @@ public class Messages {
         "06", "07", "08", "09", "10", "11", "12", "13",
         "14", "15", "16", "17", "18", "19", "20", "21",
         "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
+    public static final String STORAGE_FILEPATH_SCHEDULE = "scheduleTasks.txt";
     public static final String TODO = "todo";
     public static final int INDEX_TODO_DESCRIPTION = 1;
     public static final int INDEX_TODO_DATE = 2;
     public static final int FIRST_INDEX = 0;
-    public static final int TOTAL_SIZE = 32;
     public static final String ADDED_TASK = "Task has been added successfully!";
     public static final String LIST_TASKS_HEADER = "Here's your task list: ";
-    public static final String DISPLAY_LINE = "-------------------------"
-            + "----------------------------------------"
-            + "-----------------------------------------";
-    public static final String DAY_DEMARCATION = "|";
-    public static final String NO_TASK_IN_DAY = "              |";
+    public static final String DATE_FORMAT_TODO = "dd-MM-yyyy";
+    public static final String DECOR_BEFORE = "|  ";
+    public static final String DECOR_AFTER = "  |";
     //SCHEDULE END
 
     //HELP BEGIN

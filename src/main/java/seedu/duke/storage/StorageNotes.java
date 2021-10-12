@@ -2,9 +2,8 @@ package seedu.duke.storage;
 
 import seedu.duke.journal.CollectionOfNotes;
 import seedu.duke.journal.Note;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
-
+import seedu.duke.logger.ClickLogger;
+import java.util.logging.Level;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,8 +21,8 @@ public class StorageNotes {
         int dataSize = data.size();
         while (i < dataSize) {
             String dataLine = data.get(i);
-            String[] todoArguments = dataLine.split("\\|");
-            notes.add(addNote(todoArguments));
+            String[] noteArguments = dataLine.split("\\|");
+            notes.add(addNote(noteArguments));
             i++;
         }
         return notes;
@@ -34,7 +33,7 @@ public class StorageNotes {
         return new Note(name);
     }
 
-    static ArrayList<String> notesToData(ArrayList<Note> notes) {
+    public static ArrayList<String> notesToData(ArrayList<Note> notes) {
         ArrayList<String> data = new ArrayList<>();
         for (Note note : notes) {
             data.add(note.toSaveFileFormat());
@@ -60,9 +59,9 @@ public class StorageNotes {
             }
             return collectionOfNotes;
         } catch (FileNotFoundException e) {
+            ClickLogger.getNewLogger().log(Level.WARNING, "file not found on load");
             File f = new File(StorageNotes.filePath);
-            System.out.println("Hey, I didn't find " + StorageNotes.fileName + " in " + StorageNotes.folderName + "!");
-            System.out.println("creating new file...");
+            System.out.println("FNFE, creating file");
         }
         return collectionOfNotes;
     }

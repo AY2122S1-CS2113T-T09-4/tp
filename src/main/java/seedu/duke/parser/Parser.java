@@ -1,30 +1,23 @@
 package seedu.duke.parser;
 
-import seedu.duke.commands.AddEntryCommand;
-import seedu.duke.commands.AddFoodCommand;
-import seedu.duke.commands.AddModuleCommand;
-import seedu.duke.commands.AddNoteCommand;
-import seedu.duke.commands.AddTodoCommand;
-import seedu.duke.commands.ClearFoodCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.DeleteModuleCommand;
-import seedu.duke.commands.DisplayCalendarCommand;
+
 import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.ListFoodCommand;
-import seedu.duke.commands.ListModuleCommand;
+import seedu.duke.commands.Command;
 import seedu.duke.commands.ListTasksCommand;
-import seedu.duke.exceptions.StorageException;
-import seedu.duke.food.FoodRecord;
-import seedu.duke.constants.Messages;
+import seedu.duke.commands.AddTodoCommand;
+import seedu.duke.commands.AddEntryCommand;
+import seedu.duke.commands.AddNoteCommand;
+import seedu.duke.commands.ListJournalCommand;
+import seedu.duke.commands.DisplayCalendarCommand;
+import seedu.duke.commands.ListFoodCommand;
+import seedu.duke.commands.AddFoodCommand;
+import seedu.duke.commands.ClearFoodCommand;
+import seedu.duke.commands.HelpCommand;
 import seedu.duke.exceptions.ClickException;
+import seedu.duke.exceptions.EmptyJournalArgumentException;
 import seedu.duke.exceptions.IllegalDateTimeException;
 import seedu.duke.exceptions.IllegalFoodParameterException;
-import seedu.duke.module.Module;
-import seedu.duke.commands.HelpCommand;
-import seedu.duke.commands.DeleteTaskCommand;
-import seedu.duke.exceptions.ArgumentsNotFoundException;
-import seedu.duke.exceptions.WrongDividerOrderException;
+import seedu.duke.exceptions.IncorrectJournalArgumentException;
 import seedu.duke.food.FoodRecord;
 import seedu.duke.constants.Messages;
 import seedu.duke.ui.Ui;
@@ -35,20 +28,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
 import static seedu.duke.constants.CommandConstants.COMMAND_ADD_NOTE;
+import static seedu.duke.constants.CommandConstants.COMMAND_ADD_ENTRY;
+import static seedu.duke.constants.CommandConstants.COMMAND_JOURNAL_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_CALENDAR;
 import static seedu.duke.constants.CommandConstants.COMMAND_EXIT;
 import static seedu.duke.constants.CommandConstants.COMMAND_FOOD;
 import static seedu.duke.constants.CommandConstants.COMMAND_HElP;
 import static seedu.duke.constants.CommandConstants.COMMAND_LIST_TASKS;
-import static seedu.duke.constants.CommandConstants.COMMAND_MODULE;
-import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_ADD;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_CLEAR;
-import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_DELETE;
 import static seedu.duke.constants.CommandConstants.COMMAND_SUFFIX_LIST;
 import static seedu.duke.constants.CommandConstants.COMMAND_TODO;
+import static seedu.duke.constants.CommandConstants.COMMAND_NOTE;
+
 import static seedu.duke.constants.Messages.EMPTY_STRING;
 import static seedu.duke.constants.Messages.TODO;
 
@@ -58,9 +51,6 @@ public class Parser {
     static final String INPUT_DATE_TIME_FORMAT = "dd-MM-yyyy HHmm";
     static final String OUTPUT_DATE_TIME_FORMAT = "MMM dd yyyy HH:mm";
 
-    static final int FOOD_MINIMUM_PARAMETER = 4; // tags {/n /c} + 2 inputs {name, calorie}
-    static final String FOOD_NAME_DIVIDER = "n/";
-    static final String FOOD_CALORIE_DIVIDER = "c/";
 
     /**
      * Converts date and time in string format to a LocalDateTime object.
@@ -114,7 +104,7 @@ public class Parser {
         if (tokens.length == 2) {
             return tokens;
         } else {
-            return new String[] {command, EMPTY_STRING};
+            return new String[]{command, EMPTY_STRING};
         }
     }
 
@@ -136,6 +126,7 @@ public class Parser {
      * Parses a line of text to a food record.
      * Assumes that both name, calories field not null.
      * Note format: [NAME] | [CALORIES]
+     *
      * @param readLine line of text to read
      * @return FoodRecord food record object
      */
@@ -151,9 +142,9 @@ public class Parser {
      * @return The command to be executed.
      * @throws ClickException If there is an exception to type DukeException occurs.
      */
-    public Command parseCommand(String userInput) throws ClickException {
+    public Command parseCommand(String userInput) throws ClickException, EmptyJournalArgumentException,
+            IncorrectJournalArgumentException {
         final String[] commandTypeAndParams = splitCommandAndArgs(userInput);
-        assert commandTypeAndParams.length == 2;
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
 
@@ -162,16 +153,12 @@ public class Parser {
             return new ExitCommand();
         case COMMAND_CALENDAR:
             String[] todoArguments = commandArgs.split(" ");
-            switch (todoArguments[0]) {
-            case COMMAND_LIST_TASKS:
+            if (COMMAND_LIST_TASKS.equals(todoArguments[0])) {
                 return new ListTasksCommand();
-            case COMMAND_TODO:
+            } else if (COMMAND_TODO.equals(todoArguments[0])) {
                 ArrayList<String> arguments = parseTodoCommand(userInput);
                 return new AddTodoCommand(arguments);
-            case "delete":
-                int indexOfTaskToBeDeleted = Integer.parseInt(todoArguments[1]);
-                return new DeleteTaskCommand(indexOfTaskToBeDeleted);
-            default:
+            } else {
                 return new DisplayCalendarCommand(userInput);
             }
         case COMMAND_FOOD:
@@ -185,7 +172,7 @@ public class Parser {
             case COMMAND_SUFFIX_LIST:
                 return new ListFoodCommand();
             default:
-                throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE +  COMMAND_FOOD);
+                throw new IllegalArgumentException(Messages.LIST_PROPER_FEATURE + COMMAND_FOOD);
             }
         case COMMAND_NOTE:
             String[] noteArguments = commandArgs.split(" ");
@@ -194,20 +181,12 @@ public class Parser {
                 return new AddNoteCommand(userInput);
             case COMMAND_ADD_ENTRY:
                 return new AddEntryCommand(userInput);
+            case COMMAND_JOURNAL_LIST:
+                return new ListJournalCommand();
+            case "":
+                throw new EmptyJournalArgumentException();
             default:
-                throw new ClickException();
-            }
-        case COMMAND_MODULE:
-            String[] moduleCommandAndArgs = splitCommandAndArgs(commandArgs);
-            switch (moduleCommandAndArgs[0]) {
-            case COMMAND_SUFFIX_ADD:
-                return new AddModuleCommand(moduleCommandAndArgs[1]);
-            case COMMAND_SUFFIX_LIST:
-                return new ListModuleCommand();
-            case COMMAND_SUFFIX_DELETE:
-                return new DeleteModuleCommand(moduleCommandAndArgs[1]);
-            default:
-                throw new ClickException();
+                throw new IncorrectJournalArgumentException();
             }
         case COMMAND_HElP:
             return new HelpCommand(commandArgs);
@@ -224,89 +203,27 @@ public class Parser {
         return arguments;
     }
 
-    //@author ngnigel99
-    public static int getWordCount(String input) {
-        return input.trim().split(" ").length;
-    }
-
-    /**
-     * Returns a string representing a data block, separated by 2 dividers.
-     * For example, n/ [DATA_1] c/ [DATA_2], if n/ is passed, DATA_1 would be returned.
-     *
-     * @param input input that contains dividers and data
-     * @param dividerBefore divider before the data
-     * @param dividerAfter divider after the data
-     * @return data Array List of data extracted, containing both DATA_1 and DATA_2
-     *
-     * @author ngnigel99
-     */
-    public static String[] getData(String input,
-                                   String dividerBefore,
-                                   String dividerAfter)
-            throws WrongDividerOrderException, ArgumentsNotFoundException {
-        if (!(input.contains(dividerBefore) && input.contains(dividerAfter))) {
-            throw new ArgumentsNotFoundException();
-        }
-        if (input.indexOf(dividerBefore) >= input.indexOf(dividerAfter)) {
-            throw new WrongDividerOrderException();
-        }
-        assert input.indexOf(dividerBefore) < input.indexOf(dividerAfter) : "";
-        String afterFirstDivider  = input.split(dividerBefore)[1];
-        String dataFirst          = afterFirstDivider.split(dividerAfter)[0].trim();
-        String afterSecondDivider = afterFirstDivider.split(dividerAfter)[1];
-        String dataSecond         = afterSecondDivider.trim();
-
-        return  new String[] {dataFirst, dataSecond};
-
-    }
-
     /**
      * Parses a string into a food item.
-     * current implementation: {food add} n/ [NAME] c/ [CALORIES].
+     * current implementation: [NAME] [CALORIES].
+     *
      * @author ngnigel99
      */
-    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException,
-            ArgumentsNotFoundException {
+    public static FoodRecord parseFoodRecord(String input) throws IllegalFoodParameterException {
         try {
-            if (getWordCount(input) < FOOD_MINIMUM_PARAMETER) {
+            String[] splitInput = input.trim().split(" ");
+            if (splitInput.length != 2) {
                 throw new IllegalFoodParameterException();
             }
-            String[] data = getData(input, FOOD_NAME_DIVIDER, FOOD_CALORIE_DIVIDER);
-            String name = data[0];
-            int calories = Integer.parseInt(data[1]);
+            int calories = Integer.parseInt(splitInput[1]);
+            String name = splitInput[0];
             FoodRecord recordToAdd = new FoodRecord(name, calories);
             return recordToAdd;
         } catch (NumberFormatException e) {
             Ui.printAddFoodSyntax();
         } catch (NullPointerException e) {
             Ui.printNonNullInput();
-        } catch (WrongDividerOrderException e) {
-            e.printStackTrace();
-            System.out.println("Oops, internal error");
         }
         return null;
     }
-
-    public static String formatModuleToStore(Module module) {
-        String code = module.getCode();
-        String name = module.getName();
-        String expectedGrade = module.getExpectedGrade();
-        String data = code + " | " + name + " | " + expectedGrade + "\n";
-        return data;
-    }
-
-    public static Module retrieveStoredModule(String data) throws StorageException {
-        String[] tokens = data.split("\\|");
-        assert tokens.length == 3;
-        String code = tokens[0];
-        String name = tokens[1];
-        String expectedGrade = tokens[2];
-        try {
-            return new Module(code, name, expectedGrade);
-        } catch (Exception e) {
-            throw new StorageException();
-        }
-    }
-
 }
-

@@ -1,4 +1,4 @@
 package seedu.duke.exceptions;
 
-public class InvalidArgumentsException extends Exception{
+public class InvalidArgumentsException extends Throwable {
 }
