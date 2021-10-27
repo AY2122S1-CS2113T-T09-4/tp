@@ -25,7 +25,7 @@ public class AddLectureCommand extends Command {
     private ArrayList<String> argumentsLecture;
 
     public AddLectureCommand() {
-        syntax = "calendar lecture m/ MODULE_CODE s/ DD-MM-YYYY(START_DATE) e/ DD-MM-YYYY(END_DATE)";
+        syntax = "calendar lecture m/ [MODULE_CODE] s/ [DD-MM-YYYY(START_DATE)] e/ [DD-MM-YYYY(END_DATE)]";
     }
 
     public static void checkIfDuplicate(Lecture lecture) throws InvalidDateException, DuplicateTaskException {

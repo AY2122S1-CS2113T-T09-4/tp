@@ -28,7 +28,7 @@ public class AddTodoCommand extends Command {
     private ArrayList<String> arguments;
 
     public AddTodoCommand() {
-        syntax = "calendar todo n/ TASK_NAME d/ DD-MM-YYYY";
+        syntax = "calendar todo n/ [TASK_NAME] d/ [DD-MM-YYYY]";
     }
 
     /**

@@ -67,7 +67,7 @@ public class WhatIAteList  {
         } else {
             suffixToPrint = suffixList[3];
         }
-        System.out.print(index + suffixToPrint  +  ",");
+        Ui.printMessageSameLine(index + suffixToPrint  +  ",");
     }
 
     /**
@@ -80,6 +80,7 @@ public class WhatIAteList  {
     public void printList(boolean withMessages) {
         int index = 1;  //TODO integrate this with storage so it's not a magic number
         int calorieSum =  0;
+        Ui.printLine();
         for (FoodRecord listRecord : whatIAteList) {
             printIndexWithSuffix(index);
             if (withMessages) {
@@ -87,16 +88,17 @@ public class WhatIAteList  {
                         + " , which has a calorie count of : "
                         + listRecord.getCalorieCount()
                         + ((listRecord.getDateIAte() != null) ? " on " + listRecord.getDateIAte() + "!" : "!"));
-            } else {
+            }    else {
                 System.out.println(listRecord.getFoodName() + " : " + listRecord.getCalorieCount() + "Kcal");
             }
             index++;
             calorieSum += listRecord.getCalorieCount();
         }
-        System.out.println("Wow, that's a lot of food! Finished reading the list");
+        Ui.printMessage("Wow, that's a lot of food! Finished reading the list");
         if (withMessages) {
-            Ui.printMessage("You consumed " + calorieSum + " calories in total today!");
+            Ui.printMessage("You consumed " + calorieSum + " calories in total!");
         }
+        Ui.printLine();
     }
 
     public void clearList() {
@@ -115,7 +117,7 @@ public class WhatIAteList  {
         if (whatIAteThatDay.getList().isEmpty()) {
             return;
         }
-        System.out.println("Nice, I found the items you ate on " + formattedDate);
+        Ui.printMessage("Nice, I found the items you ate on " + formattedDate);
         whatIAteThatDay.printList(true);
     }
 }

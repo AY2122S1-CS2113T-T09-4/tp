@@ -85,8 +85,11 @@ public class Ui {
         System.out.println(LINE_PREFIX + message);
     }
 
+    public static void printMessageSameLine(String message) {
+        System.out.print(LINE_PREFIX + message);
+    }
 
-    //start of FOOD
+    //@@author ngnigel99
     /**
      * Prints the name of the record, as well as the calorie count.
      * @author ngnigel99
@@ -94,11 +97,13 @@ public class Ui {
      */
     //TODO  remove messages, may be neater
     public static void printAddRecord(FoodRecord record)  {
-        System.out.println("Nice.  I've added "
+        Ui.printLine();
+        Ui.printMessage("Nice.  I've added "
                 + record.getFoodName()
                 + " to the list, with "
                 + record.getCalorieCount()
                 + " calories!");
+        Ui.printLine();
     }
 
     /**
@@ -107,19 +112,27 @@ public class Ui {
      * @author ngnigel99
      */
     public static void printDoneClearList() {
-        System.out.println(Messages.PRINT_DONE_CLEAR_LIST);
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_DONE_CLEAR_LIST);
+        Ui.printLine();
     }
 
     public static void printAddFoodSyntax() {
-        System.out.println(Messages.PRINT_ADD_FOOD_SYNTAX);
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_ADD_FOOD_SYNTAX);
+        Ui.printLine();
     }
 
     public static void printNonNullInput() {
-        System.out.println(Messages.NON_NULL_INPUT);
+        Ui.printLine();
+        Ui.printMessage(Messages.NON_NULL_INPUT);
+        Ui.printLine();
     }
 
     public static void printOnlyIntegers() {
-        System.out.println(Messages.PRINT_NOT_AN_INT);
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_NOT_AN_INT);
+        Ui.printLine();
     }
 
     /**
@@ -128,15 +141,19 @@ public class Ui {
      * for exceptions - implement in further testing versions.
      */
     public static void printErrorMessageGeneral() {
-        System.out.println(Messages.PRINT_ERROR_MESSAGE_GENERAL);
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_ERROR_MESSAGE_GENERAL);
+        Ui.printLine();
     }
 
     public static void printDoneDeleteFood(FoodRecord foodRecord, int index) {
-        System.out.println(Messages.PRINT_DONE_DELETE_INDEX + " "
+        Ui.printLine();
+        Ui.printMessage(Messages.PRINT_DONE_DELETE_INDEX + " "
                 +  foodRecord.getFoodName()
                 + " at index: " + index);
+        Ui.printLine();
     }
-    //end of FOOD
+    //@@author ngnigel99
 
     /**
      * Prints message to indicate note has been added.
@@ -289,7 +306,7 @@ public class Ui {
 
     public static void displayZoomLink(String moduleName, String zoomLink) {
         System.out.println("Module: " + moduleName);
-        System.out.println("Zoom: " + zoomLink + "\n");
+        System.out.println("Zoom: " + zoomLink);
     }
 
 

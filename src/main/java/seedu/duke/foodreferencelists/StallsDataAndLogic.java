@@ -71,14 +71,14 @@ public class StallsDataAndLogic {
      * Helper function to list all current stores.
      */
     public static void printStalls() {
-        idName.forEach((key, value) -> System.out.println(key + " | " + value));
-        System.out.println("Wow, thats a lot of options! Finished printing");
+        idName.forEach((key, value) -> Ui.printMessage(key + " | " + value));
+        Ui.printMessage("Wow, thats a lot of options! Finished printing");
     }
 
     public static FoodRecord getFoodRecordFromStall(int storeIndex, int foodIndex)
         throws FoodIndexNotFoundException {
         if (storeIndex <= 0 || storeIndex > MAX_STORE_INDEX) {
-            System.out.println("Oops, can't find store " + storeIndex);
+            Ui.printMessage("Oops, can't find store " + storeIndex);
             throw new FoodIndexNotFoundException();
         }
         int itemCount = idData.get(storeIndex).length;
@@ -97,7 +97,7 @@ public class StallsDataAndLogic {
      */
     public static void printItems(int index) {
         if (index <= 0 || index > MAX_STORE_INDEX) {
-            System.out.println("Oops, can't find store " + index);
+            Ui.printMessage("Oops, can't find store " + index);
         } else {
             WhatIAteList tempFormattedList = new WhatIAteList();
             String[] itemsSold = idData.get(index);

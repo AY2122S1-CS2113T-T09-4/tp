@@ -43,7 +43,8 @@ public class FoodRecord {
     public String toString() {
         return foodName
                 + Messages.RECORD_ATTRIBUTE_DIVIDER
-                + calorieCount;
+                + calorieCount
+                + " KCal";
     }
 
     public String toSaveListFormat() {

@@ -20,13 +20,13 @@ public class AddFoodFromReferenceCommand extends Command {
     private int itemIndex;
 
     public AddFoodFromReferenceCommand() {
-        this.syntax = "food radd /s [STORE_INDEX] /i [ITEM_INDEX]";
+        this.syntax = "food radd s/ [STORE_INDEX] i/ [ITEM_INDEX]";
     }
 
     //assumes string given after food radd
     public AddFoodFromReferenceCommand(String userInput) throws WrongDividerOrderException,
         ArgumentsNotFoundException {
-        String[] data = Parser.getData(userInput, "/s", "/i");
+        String[] data = Parser.getData(userInput, "s/", "i/");
         String storeIndexString = data[0];
         String itemIndexString = data[1];
         try {
@@ -43,7 +43,9 @@ public class AddFoodFromReferenceCommand extends Command {
             .reference
             .getTechnoEdge()
             .getFoodRecordFromStall(storeIndex, itemIndex);
-        System.out.println(toAdd.toString());
+        Ui.printLine();
+        Ui.printMessageSameLine("Nice, adding the record - ");
+        Ui.printMessage(toAdd.toString());
         storage.whatIAteTodayList.addToList(toAdd, false);
         StorageFood.saveList(storage.whatIAteTodayList);
     }

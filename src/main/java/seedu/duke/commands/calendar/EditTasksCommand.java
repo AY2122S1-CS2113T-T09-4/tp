@@ -28,7 +28,7 @@ public class EditTasksCommand extends Command {
     private int index;
 
     public EditTasksCommand() {
-        syntax = "calendar edit TASK_INDEX";
+        syntax = "calendar edit [TASK_INDEX]";
 
     }
 

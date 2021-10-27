@@ -14,7 +14,6 @@ import java.io.IOException;
 //@@author ngnigel99
 /**
  * Command to add a food item to the existing  list.
- * prefix would be food add [FOOD_NAME] [CALORIE_COUNT(kcal)]
  *
  * @author ngnigel99
  */
@@ -22,7 +21,7 @@ public class AddFoodCommand extends Command {
     private String inputString; //name + calorie
 
     public AddFoodCommand() {
-        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DATE}";
+        syntax = "food add n/ [FOOD_NAME] c/ [CALORIE] d/ {DD-MM-YYYY(DATE_RECORDED)}";
     }
 
     public AddFoodCommand(String inputString) {
@@ -46,7 +45,8 @@ public class AddFoodCommand extends Command {
         try {
             foodRecord = Parser.parseFoodRecord(inputString);
         } catch (ArgumentsNotFoundException e) {
-            e.printStackTrace();    //dividers are not aligned with syntax
+            Ui.printLine();
+            Ui.printMessage("Wrong syntax! Refer to help for more options.");
         }
         storage.whatIAteTodayList.addToList(foodRecord, false);
         StorageFood.saveList(storage.whatIAteTodayList);

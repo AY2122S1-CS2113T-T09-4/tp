@@ -17,7 +17,6 @@ public class DeleteNoteCommand extends Command {
 
     public String userInput;
 
-
     /**
      * Constructor for the DeleteNoteCommand.
      *

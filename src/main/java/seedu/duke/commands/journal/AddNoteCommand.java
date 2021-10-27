@@ -17,7 +17,6 @@ import java.io.IOException;
 public class AddNoteCommand extends Command {
     public String userInput;
 
-
     /**
      * Constructor for the AddNoteCommand.
      *

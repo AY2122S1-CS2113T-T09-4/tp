@@ -16,7 +16,7 @@ public class DeleteTaskCommand extends Command {
     private String userInput;
 
     public DeleteTaskCommand() {
-        syntax = "calendar delete task TASK_INDEX";
+        syntax = "calendar delete task [TASK_INDEX]";
     }
 
     /**

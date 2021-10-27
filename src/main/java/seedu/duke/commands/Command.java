@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.constants.Messages;
 import seedu.duke.exceptions.ClickException;
 import seedu.duke.ui.Ui;
 import seedu.duke.storage.Storage;
@@ -37,6 +38,7 @@ public abstract class Command implements Comparator<Command> {
         Class currentClass = getClass();
         String fullClassName = currentClass.getSimpleName();
         String[] r = fullClassName.split("(?=\\p{Upper})"); //format by camel case
+        System.out.print(Messages.LINE_PREFIX);
         for (String s : r) {
             if (!s.equals("Command")) {
                 System.out.print(s + " ");

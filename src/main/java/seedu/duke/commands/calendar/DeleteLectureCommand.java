@@ -19,7 +19,7 @@ public class DeleteLectureCommand extends Command {
     private String userInput;
 
     public DeleteLectureCommand() {
-        syntax = "calendar delete lec LECTURE_INDEX";
+        syntax = "calendar delete lec [LECTURE_INDEX]";
     }
 
     /**

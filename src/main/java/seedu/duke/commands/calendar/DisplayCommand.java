@@ -24,7 +24,7 @@ public class DisplayCommand extends Command {
     private ArrayList<ArrayList<String>> calendarLectures = new ArrayList<>(TOTAL_SIZE);
 
     public DisplayCommand() {
-        syntax = "calendar display MM-YYYY";
+        syntax = "calendar display [MM-YYYY]";
     }
 
     public DisplayCommand(String input) {

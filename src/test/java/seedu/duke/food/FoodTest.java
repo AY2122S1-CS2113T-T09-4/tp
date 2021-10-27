@@ -21,7 +21,7 @@ public class FoodTest {
      */
     @Test
     void testFoodToString() {
-        assertEquals("Samurai Burger : 433", new FoodRecord("Samurai Burger", 433).toString());
+        assertEquals("Samurai Burger : 433 KCal", new FoodRecord("Samurai Burger", 433).toString());
     }
 
     /**
