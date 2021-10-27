@@ -1,5 +1,7 @@
 package seedu.duke.journal;
 
+//@@author SvethaMahadevan
+
 import java.util.ArrayList;
 
 public class CollectionOfEntries {
@@ -28,17 +30,4 @@ public class CollectionOfEntries {
         entries.add(new Entry(nameOfNote, nameOfEntry));
     }
 
-    /**
-     * Deletes entry from the notebook based on its index.
-     *
-     * @param indexOfEntry contains index of entry to be deleted
-     */
-    public static void deleteEntry(String noteName, int indexOfEntry) {
-        for (Entry entry: entries) {
-            if (entry.getEntryNoteName().equals(noteName)) {
-
-                entries.remove(indexOfEntry - 1);
-            }
-        }
-    }
 }

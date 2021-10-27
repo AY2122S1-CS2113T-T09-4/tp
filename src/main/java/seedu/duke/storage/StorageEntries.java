@@ -1,7 +1,10 @@
 package seedu.duke.storage;
 
+//@@author SvethaMahadevan
+
 import seedu.duke.journal.CollectionOfEntries;
 import seedu.duke.journal.Entry;
+import seedu.duke.journal.Note;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,17 +36,23 @@ public class StorageEntries {
         return new Entry(noteName, entryName);
     }
 
-    public static ArrayList<String> entriesToData(ArrayList<Entry> entries) {
+    public static ArrayList<String> entriesToData(ArrayList<Entry> entries, Storage storage) {
         ArrayList<String> data = new ArrayList<>();
+        ArrayList<Note> notes = storage.collectionOfNotes.getNotesArrayList();
         for (Entry entry : entries) {
-            data.add(entry.toSaveFileFormat());
+            for (Note note: notes) {
+                if (entry.getEntryNoteName().equals(note.getNoteName())) {
+                    data.add(entry.toSaveFileFormat());
+                }
+            }
+
         }
         return data;
     }
 
-    public static void writeEntries(CollectionOfEntries collectionOfEntries) throws IOException {
+    public static void writeEntries(CollectionOfEntries collectionOfEntries, Storage storage) throws IOException {
         ArrayList<Entry> entries = collectionOfEntries.getEntriesArrayList();
-        ArrayList<String> data = entriesToData(entries);
+        ArrayList<String> data = entriesToData(entries, storage);
         Storage.writeDataOntoSaveFile(filePath, data);
     }
 

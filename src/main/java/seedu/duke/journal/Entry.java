@@ -1,5 +1,7 @@
 package seedu.duke.journal;
 
+//@@author SvethaMahadevan
+
 public class Entry {
     private String entryName;
     private String noteName;
@@ -14,6 +16,7 @@ public class Entry {
         this.entryName = titleOfJournalEntry;
         this.noteName = noteName;
     }
+
 
     /**
      * Returns the name of the entry.

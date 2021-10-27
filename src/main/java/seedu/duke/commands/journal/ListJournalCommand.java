@@ -1,5 +1,7 @@
 package seedu.duke.commands.journal;
 
+//@@author SvethaMahadevan
+
 import seedu.duke.commands.Command;
 import seedu.duke.journal.Entry;
 import seedu.duke.journal.Note;
@@ -27,8 +29,10 @@ public class ListJournalCommand extends Command {
         ArrayList<Entry> entries = storage.collectionOfEntries.getEntriesArrayList();
         int notebookIndex = 1;
         int entryIndex = 1;
+        ui.printLine();
         for (Note note : notes) {
-            System.out.println(notebookIndex + ". " + "The notebook " + note.getNoteName() + " contains:");
+            System.out.println(notebookIndex + ". " + "The notebook " + note.getNoteName()
+                   + "(tag: " + note.getTag().trim() + ")" + " contains:");
             notebookIndex += 1;
             for (Entry entry : entries) {
                 if (entry.getEntryNoteName().equals(note.getNoteName())) {
@@ -36,7 +40,8 @@ public class ListJournalCommand extends Command {
                     entryIndex += 1;
                 }
             }
+            entryIndex = 1;
         }
-
+        ui.printLine();
     }
 }

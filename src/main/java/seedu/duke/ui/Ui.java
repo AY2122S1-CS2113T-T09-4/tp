@@ -144,7 +144,9 @@ public class Ui {
      * @author SvethaMahadevan
      */
     public static void printAddedNoteMessage(String noteName) {
+        ui.printLine();
         System.out.println("Great you have added the note: " + noteName);
+        ui.printLine();
     }
 
     /**
@@ -153,7 +155,9 @@ public class Ui {
      * @author SvethaMahadevan
      */
     public static void printAddedEntryMessage(String entryName) {
+        ui.printLine();
         System.out.println("Great you have added the entry: " + entryName);
+        ui.printLine();
     }
 
     /**
@@ -162,7 +166,9 @@ public class Ui {
      * @author SvethaMahadevan
      */
     public static void printDeletedNotebookMessage(int indexOfDeletedNotebook) {
+        ui.printLine();
         System.out.println("Great you have deleted the notebook at : " + indexOfDeletedNotebook);
+        ui.printLine();
     }
 
     /**
@@ -171,9 +177,21 @@ public class Ui {
      * @author SvethaMahadevan
      */
     public static void printDeletedEntryMessage() {
+        ui.printLine();
         System.out.println("Great you have deleted the entry");
+        ui.printLine();
     }
 
+    /**
+     * Prints message to indicate that the notebook had been tagged.
+     *
+     * @author SvethaMahadevan
+     */
+    public static void printTaggedNotebookMessage() {
+        ui.printLine();
+        System.out.println("Great you have tagged the notebook");
+        ui.printLine();
+    }
 
     //Schedule
     /**

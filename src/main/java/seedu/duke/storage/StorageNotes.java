@@ -1,5 +1,7 @@
 package seedu.duke.storage;
 
+//@@author SvethaMahadevan
+
 import seedu.duke.journal.CollectionOfNotes;
 import seedu.duke.journal.Note;
 import seedu.duke.logger.ClickLogger;
@@ -30,7 +32,8 @@ public class StorageNotes {
 
     private static Note addNote(String[] noteArguments) {
         String name = noteArguments[1].trim();
-        return new Note(name);
+        String tag = noteArguments[2].trim();
+        return new Note(name, tag);
     }
 
     public static ArrayList<String> notesToData(ArrayList<Note> notes) {
@@ -55,7 +58,7 @@ public class StorageNotes {
             ArrayList<String> data = Storage.loadDataFromSaveFile(StorageNotes.filePath);
             notes = StorageNotes.dataToNotes(data);
             for (int i = 0; i < notes.size(); i++) {
-                collectionOfNotes.addNote(notes.get(i).getNoteName());
+                collectionOfNotes.addNote(notes.get(i).getNoteName(), notes.get(i).getTag());
             }
         } catch (FileNotFoundException e) {
             ClickLogger.getNewLogger().log(Level.WARNING, "file not found on load");
